@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="stylep.css">
+    <script>
+        // Array para almacenar los productos en la canasta
+        let carrito = [];
+
+        // Función para agregar productos a la canasta
+        function agregarProducto(nombre, cantidad) {
+            if (cantidad <= 0) {
+                alert("Por favor, selecciona una cantidad válida.");
+                return;
+            }
+
+            // Buscar si el producto ya está en el carrito
+            const productoExistente = carrito.find((item) => item.nombre === nombre);
+
+            if (productoExistente) {
+                productoExistente.cantidad += cantidad;
+            } else {
+                carrito.push({ nombre, cantidad });
+            }
+
+            alert(`Agregado ${cantidad} ${nombre}(s) a la canasta.`);
+            console.log("Carrito actual:", carrito);
+            actualizarCanasta();
+        }
+
+        // Función para actualizar el contenido de la canasta en pantalla
+        function actualizarCanasta() {
+            const canastaElement = document.getElementById("canasta");
+            canastaElement.innerHTML = "";
+
+            carrito.forEach((producto) => {
+                const item = document.createElement("div");
+                item.textContent = `${producto.nombre} - Cantidad: ${producto.cantidad}`;
+                canastaElement.appendChild(item);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="product-grid">
+        <!-- Producto 1 -->
+        <div class="product-card">
+            <img src="r_virtual1.jpg" alt="Realidad Virtual">
+            <h2>Gafas Realidad Virtual Bercley Azul</h2>
+            <p>Gafas de realidad virtual con lentes y bandeja ajustables para todo tipo de smartphones. 
+                Conexiones de entrada de audio jack de 3,5mm, cómodas cintas elásticas ajustables para la cabeza, 
+                y acolchado alrededor de la zona de los ojos para mayor confort. Paño limpiador de microfibra para las lentes incluido. 
+                Presentadas en atractiva caja de diseño.</p>
+    
+            <input type="number" class="product-quantity" min="1" value="1" id="cantidad1">
+            <h2>$45.00</h2>
+            <button onclick="agregarProducto('Gafas Realidad Virtual Bercley Azul', parseInt(document.getElementById('cantidad1').value))">Agregar a la canasta</button>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product-card">
+            <img src="r_virtual2.jpg" alt="Realidad Virtual">
+            <h2>Lente de Realidad Virtual Pico 4 Ultra</h2>
+            <p>Cuatro cámaras de seguimiento del entorno
+                Dos cámaras de transparencia a color de 32 MP
+                Cámara con sensor de profundidad iToF
+                Alta resolución. Baja distorsión. Experiencia más fluida.
+                Diviértete sin interrupciones incluso en el modo MR
+                PICO 4 Ultra te ofrece una transparencia a color de alta calidad con baja distorsión de 8 MP y 20,6 PPD.
+                </p>
+    
+            <input type="number" class="product-quantity" min="1" value="1" id="cantidad2">
+            <h2>$55.00</h2>
+            <button onclick="agregarProducto('Lente de Realidad Virtual Pico 4 Ultra', parseInt(document.getElementById('cantidad2').value))">Agregar a la canasta</button>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product-card">
+            <img src="r_virtual3.jpg" alt="Realidad Virtual">
+            <h2>Gafas Realidad Virtual Meta Quest 3</h2>
+            <p>Disfruta como nunca de todo lo que te gusta. Llévate además el juego Batman: Arkham Shadow y disfruta de 3 meses de prueba de Meta 
+                Quest+ (valorados en 70 €)** al comprar las Meta Quest 3 512 GB.
+                Descubre nuevas formas de trabajar, jugar, relajarte y conectar con la realidad mixta, donde puedes mezclar objetos 
+                digitales en tu espacio físico. Convierte cualquier lugar en una sala de cine privada, crea un gimnasio en tu salón o adéntrate en 
+                juegos fascinantes. </p>
+    
+            <input type="number" class="product-quantity" min="1" value="1" id="cantidad3">
+            <h2>$65.00</h2>
+            <button onclick="agregarProducto('Gafas Realidad Virtual Meta Quest 3', parseInt(document.getElementById('cantidad3').value))">Agregar a la canasta</button>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product-card">
+            <img src="r_virtual4.jpg" alt="Realidad Virtual">
+            <h2>Gafas Realidad Virtual NK Inteligentes VR</h2>
+            <p>Múltiples aplicaciones y tecnología 3D recientemente actualizada：Encuentre juegos o aplicaciones de películas para VR en 
+                App Store, o vea películas, animaciones, conciertos panorámicos, juegos de VR, etc.
+                Compatible con todos los teléfonos inteligentes：gafas realidad virtual son adecuadas para la mayoría de los teléfonos 
+                inteligentes no curvos con un tamaño de pantalla de 4.7 a 7.2 pulgadas. </p>
+    
+            <input type="number" class="product-quantity" min="1" value="1" id="cantidad4">
+            <h2>$52.00</h2>
+            <button onclick="agregarProducto('Gafas Realidad Virtual NK Inteligentes VR', parseInt(document.getElementById('cantidad4').value))">Agregar a la canasta</button>
+        </div>
+    </div>
+
+    <!-- Sección de la canasta -->
+    <div id="canasta-container">
+        <h2>Canasta</h2>
+        <div id="canasta"></div>
+    </div>
+
+     <!-- Botón flotante para redirigir a otra página -->
+     <button id="go-to-other-page" onclick="window.location.href='canasta.html';">Ir a Canasta</button>
+
+    <a href="inicio.html" id="go-to-home" class="go-to-home-button">Ir al Inicio</a>
+</body>
+</html>
